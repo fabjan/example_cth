@@ -10,3 +10,4 @@ jobs:
           otp-version: "25.1.2"
           rebar3-version: "3.20.0"
       - run: rebar3 ct
+      - run: cat /tmp/file.log
