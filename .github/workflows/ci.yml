@@ -10,4 +10,5 @@ jobs:
           otp-version: "25.1.2"
           rebar3-version: "3.20.0"
       - run: rebar3 ct
-      - run: cat /tmp/file.log
+      - run: cat _build/test/logs/last/example_cth.log || echo 'no example_cth.log'
+      - run: cat _build/test/logs/last/example_cth2.log || echo 'no example_cth2.log'

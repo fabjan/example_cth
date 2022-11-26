@@ -16,7 +16,7 @@
 ]).
 
 suite() ->
-    [{ct_hooks, [example_cth]}].
+    [{ct_hooks, [{example_cth, [{filename, "example_cth.log"}]}, example_cth2]}].
 
 init_per_suite(Config) ->
     Config.
