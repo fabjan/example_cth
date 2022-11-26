@@ -77,7 +77,7 @@
 
  %% Called after each init_per_testcase (immediately before the test case).
  post_init_per_testcase(Suite,TC,Config,Return,State) ->
-     {Return, State}
+     {Return, State}.
 
 %% Called before each end_per_testcase (immediately after the test case).
  pre_end_per_testcase(Suite,TC,Config,State) ->
