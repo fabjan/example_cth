@@ -12,7 +12,8 @@
 ]).
 
 -export([
-    bar_works/1
+    bar_works/1,
+    bar_fails/1
 ]).
 
 suite() ->
@@ -31,10 +32,10 @@ end_per_testcase(_Test, Config) ->
     Config.
 
 all() ->
-    [bar_works].
+    [bar_works, bar_fails].
 
 bar_works(_Config) ->
     ok.
 
 bar_fails(_Config) ->
-    ?assertEqual(4711, 1337 + 42).
+    {skip, "no thanks"}.
