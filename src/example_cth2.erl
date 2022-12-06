@@ -25,6 +25,8 @@
 
  %% This state is threaded through all the callbacks.
  -record(state, { filename, total, suite_total, ts, tcs, data, skipped }).
+ %% This example hook prints its results to a file, see terminate/1.
+ -record(test_run, {total, skipped, suites}).
 
  %% Return a unique id for this CTH.
  %% Using the filename means the hook can be used with different
@@ -68,7 +70,11 @@
  %% Called when the scope of the CTH is done.
  terminate(State) ->
      %% use append to avoid data loss if the path is reused
-    io:format(Dev, "~p.~n",
-              [{test_run, State#state.total, State#state.data}]),
-    file:close(Dev),
+     {ok, File} = file:open(State#state.filename, [write, append]),
+     io:format(File, "~p.~n", [results(State)]),
+     file:close(File),
      ok.
+
+ results(State) ->
+     #state{skipped = Skipped, data = Data, total = Total} = State,
+     #test_run{total = Total, skipped = Skipped, suites = lists:reverse(Data)}.
